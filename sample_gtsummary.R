@@ -3,6 +3,7 @@
 # ==========================================================
 library(gtsummary)
 library(gt)
+requireNamespace("broom", quietly = TRUE)
 
 # ----------------------------------------------------------
 # 0. 出力先ディレクトリ（環境変数から組み立て）
@@ -47,7 +48,8 @@ tbl1 <- trial |>
   modify_header(label ~ "**項目**") |>
   bold_labels()
 
-tbl1
+#tbl1
+invisible(tbl1)
 
 tbl1 |>
   gtsummary::as_gt() |>
@@ -92,7 +94,8 @@ tbl2 <- reg_df |>
     locations = cells_body(columns = p.value, rows = p.value < 0.05)
   )
 
-tbl2
+#tbl2
+invisible(tbl2)
 
 gt::gtsave(tbl2, filename = file.path(out_dir, "regression_table.html"))
 
